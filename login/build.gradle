@@ -6,6 +6,7 @@ def androidId = rootProject.ext.androidId
 def support = rootProject.ext.dependencies
 def test = rootProject.ext.dependenciesTest
 def appId = rootProject.ext.appId
+def signing = rootProject.ext.signing
 
 android {
     compileSdkVersion androidId.compileSdkVersion
@@ -21,9 +22,46 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        debug {
+            //签名证书文件
+            storeFile file(signing.storeFile)
+            //签名证书文件密码
+            storePassword signing.storePassword
+            //签名证书中密钥别名
+            keyAlias signing.keyAlias
+            //签名证书中该密钥的密码
+            keyPassword signing.keyPassword
+            // 如果要支持最新版的系统 Android 7.0
+            // 这一行必须加，否则安装时会提示没有签名
+            // 作用是只使用旧版签名，禁用V2版签名模式
+            v2SigningEnabled true
+        }
+
+        release {
+            //签名证书文件
+            storeFile file(signing.storeFile)
+            //签名证书文件密码
+            storePassword signing.storePassword
+            //签名证书中密钥别名
+            keyAlias signing.keyAlias
+            //签名证书中该密钥的密码
+            keyPassword signing.keyPassword
+            // 如果要支持最新版的系统 Android 7.0
+            // 这一行必须加，否则安装时会提示没有签名
+            // 作用是只使用旧版签名，禁用V2版签名模式
+            v2SigningEnabled true
+        }
+
+    }
+
     buildTypes {
+        debug {
+            buildConfigField("String", "debug", "\"${url.debug}\"")
+        }
         release {
             minifyEnabled false
+            buildConfigField("String", "debug", "\"${url.release}\"")
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

@@ -6,6 +6,8 @@ def androidId = rootProject.ext.androidId
 def support = rootProject.ext.dependencies
 def test = rootProject.ext.dependenciesTest
 def appId = rootProject.ext.appId
+def url = rootProject.ext.url
+def signing = rootProject.ext.signing
 
 android {
     compileSdkVersion androidId.compileSdkVersion
@@ -21,16 +23,99 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+    signingConfigs {
+        debug {
+            //签名证书文件
+            storeFile file(signing.storeFile)
+            //签名证书文件密码
+            storePassword signing.storePassword
+            //签名证书中密钥别名
+            keyAlias signing.keyAlias
+            //签名证书中该密钥的密码
+            keyPassword signing.keyPassword
+            // 如果要支持最新版的系统 Android 7.0
+            // 这一行必须加，否则安装时会提示没有签名
+            // 作用是只使用旧版签名，禁用V2版签名模式
+            v2SigningEnabled true
+        }
+
         release {
+            //签名证书文件
+            storeFile file(signing.storeFile)
+            //签名证书文件密码
+            storePassword signing.storePassword
+            //签名证书中密钥别名
+            keyAlias signing.keyAlias
+            //签名证书中该密钥的密码
+            keyPassword signing.keyPassword
+            // 如果要支持最新版的系统 Android 7.0
+            // 这一行必须加，否则安装时会提示没有签名
+            // 作用是只使用旧版签名，禁用V2版签名模式
+            v2SigningEnabled true
+        }
+
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
             minifyEnabled false
+            signingConfig signingConfigs.debug
+            zipAlignEnabled true
+            buildConfigField("String", "debug", "\"${url.debug}\"")
+        }
+        release {
+            debuggable true
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            zipAlignEnabled true
+            buildConfigField("String", "debug", "\"${url.release}\"")
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+
+    // AdbOptions 可以对 adb 操作选项添加配置
+    adbOptions {
+        // 配置操作超时时间，单位毫秒
+        timeOutInMs = 5 * 1000_0
+
+        // adb install 命令的选项配置
+        installOptions '-r', '-s'
+    }
+    // 对 dx 操作的配置，接受一个 DexOptions 类型的闭包，配置由 DexOptions 提供
+    dexOptions {
+        // 配置执行 dx 命令是为其分配的最大堆内存
+        javaMaxHeapSize "4g"
+        // 配置是否预执行 dex Libraries 工程，开启后会提高增量构建速度，不过会影响 clean 构建的速度，默认 true
+        preDexLibraries = false
+        // 配置是否开启 jumbo 模式，代码方法是超过 65535 需要强制开启才能构建成功
+        jumboMode true
+        // 配置 Gradle 运行 dx 命令时使用的线程数量
+        threadCount 8
+        // 配置multidex参数
+        additionalParameters = [
+                '--multi-dex', // 多dex分包
+                '--set-max-idx-number=50000', // 每个包内方法数上限
+                // '--main-dex-list=' + '/multidex-config.txt', // 打包到主classes.dex的文件列表
+                '--minimal-main-dex'
+        ]
+    }
+    // 执行 gradle lint 命令即可运行 lint 检查，默认生成的报告在 outputs/lint-results.html 中
+    lintOptions {
+        // 遇到 lint 检查错误会终止构建，一般设置为 false
+        abortOnError false
+        // 将警告当作错误来处理（老版本：warningAsErros）
+        warningsAsErrors false
+        // 检查新 API
+        check 'NewApi'
+    }
+
 }
 
 dependencies {

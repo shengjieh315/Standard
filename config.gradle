@@ -29,9 +29,29 @@ ext {
 
     //测试
     dependenciesTest = [
-            "junit"           : "junit:junit:4.+",
-            "ext"             : "androidx.test.ext:junit:1.1.1",
-            "espresso"        : "androidx.test.espresso:espresso-core:3.2.0"
+            "junit"   : "junit:junit:4.+",
+            "ext"     : "androidx.test.ext:junit:1.1.1",
+            "espresso": "androidx.test.espresso:espresso-core:3.2.0"
+    ]
+
+    //服务器运行环境(网络请求地址)
+    url = [
+            // 线上环境
+            release: "https://apiconfig.321mh.com/app_api/v5/getconfig/",
+//            //开发环境 136 config
+//            debug  : "http://172.16.25.136:5161/api/v1/getconfig",
+            //测试环境 236 config
+            debug  : "http://47.118.56.236:5161/api/v1/getconfig",
+//            // 预发布环境 225 config
+//            debug  : "http://47.98.152.225:5161/api/v1/getconfig"
+    ]
+
+    //签名文件
+    signing = [
+            "storeFile"    : "../debug.keystore",
+            "storePassword": "android",
+            "keyAlias"     : "androiddebugkey",
+            "keyPassword"  : "android"
     ]
 
 }
