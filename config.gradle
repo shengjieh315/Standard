@@ -26,6 +26,8 @@ ext {
             "appcompat"       : "androidx.appcompat:appcompat:${supportLibrary}",
             "material"        : "com.google.android.material:material:${supportLibrary}",
             "constraintlayout": "androidx.constraintlayout:constraintlayout:1.1.3",
+            "klog"            : "com.github.zhaokaiqiang.klog:library:1.6.0",
+//            "RRatChet"        : "com.github.RRatChet:Compress:0.0.1"
     ]
 
     //测试

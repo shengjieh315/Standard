@@ -130,15 +130,15 @@ android {
                 '--minimal-main-dex'
         ]
     }
-    // 执行 gradle lint 命令即可运行 lint 检查，默认生成的报告在 outputs/lint-results.html 中
-    lintOptions {
-        // 遇到 lint 检查错误会终止构建，一般设置为 false
-        abortOnError false
-        // 将警告当作错误来处理（老版本：warningAsErros）
-        warningsAsErrors false
-        // 检查新 API
-        check 'NewApi'
-    }
+//    // 执行 gradle lint 命令即可运行 lint 检查，默认生成的报告在 outputs/lint-results.html 中
+//    lintOptions {
+//        // 遇到 lint 检查错误会终止构建，一般设置为 false
+//        abortOnError false
+//        // 将警告当作错误来处理（老版本：warningAsErros）
+//        warningsAsErrors false
+//        // 检查新 API
+//        check 'NewApi'
+//    }
 }
 
 dependencies {
