@@ -129,7 +129,10 @@ repositories {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 //    support.each { k, v -> implementation v }
-    implementation project(':common')
+
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    implementation project(path: ':common')
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 
     testImplementation test.junit
     androidTestImplementation test.ext

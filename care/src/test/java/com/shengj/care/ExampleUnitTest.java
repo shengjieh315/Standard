@@ -1,13 +1,6 @@
-package com.shengj.standard;
-
-import com.socks.library.KLog;
+package com.shengj.care;
 
 import org.junit.Test;
-
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
 
 import static org.junit.Assert.*;
 
@@ -19,9 +12,6 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
-
+        assertEquals(4, 2 + 2);
     }
-
-
-
 }

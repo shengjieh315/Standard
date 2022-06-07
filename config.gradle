@@ -7,7 +7,7 @@ ext {
     androidId = [
             compileSdkVersion: 30,
             buildToolsVersion: "30.0.0",
-            minSdkVersion    : 16,
+            minSdkVersion    : 21,
             targetSdkVersion : 30,
             versionCode      : 1,
             versionName      : "1.0"
@@ -32,7 +32,7 @@ ext {
 
     //测试
     dependenciesTest = [
-            "junit"   : "junit:junit:4.+",
+            "junit"   : "junit:junit:4.13.2",
             "ext"     : "androidx.test.ext:junit:1.1.1",
             "espresso": "androidx.test.espresso:espresso-core:3.2.0"
     ]
