@@ -11,7 +11,7 @@ public class Utils {
 
     public static String getDeviceId() {
         if (TextUtils.isEmpty(deviceId)) {
-            deviceId = PhoneHelper.getInstance().getIME();
+//            deviceId = PhoneHelper.getInstance().getIME();
         }
         return deviceId;
     }
