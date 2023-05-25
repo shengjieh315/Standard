@@ -33,11 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void toOther(View view) {
 
-        Intent intent = new Intent(this , OtherActivity.class);
-        startActivity(intent);
-
-    }
 
 }
