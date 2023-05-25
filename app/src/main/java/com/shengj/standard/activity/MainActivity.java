@@ -2,20 +2,15 @@ package com.shengj.standard.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.as.capital.CapitalMainActivity;
+import com.as.goods.GoodsMainActivity;
 import com.shengj.standard.R;
 import com.socks.library.KLog;
 
-import butterknife.BindView;
-
 public class MainActivity extends AppCompatActivity {
-
-    @BindView(R.id.tv_hello)
-    TextView tvHello;
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -29,10 +24,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        KLog.e("Main_onCreate");
+        findViewById(R.id.tv_capital).setOnClickListener(view -> {
+            startActivity(new Intent(this, CapitalMainActivity.class));
+        });
+
+        findViewById(R.id.tv_goods).setOnClickListener(view -> {
+            startActivity(new Intent(this, GoodsMainActivity.class));
+        });
 
     }
-
 
 
 }

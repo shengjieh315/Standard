@@ -132,6 +132,9 @@ dependencies {
 
     implementation 'com.jakewharton:butterknife:10.2.3'
     implementation project(path: ':common')
+    implementation project(path: ':goodsModule')
+    implementation project(path: ':capitalModule')
+    implementation project(path: ':care')
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 
     testImplementation test.junit

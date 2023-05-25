@@ -85,6 +85,11 @@ android {
     // 配置资源路径，方便测试环境，打包不集成到正式环境
     sourceSets {
         main {
+
+            res.srcDirs = [
+                    'src/main/res/layout/debug',
+                    'src/main/res'
+            ]
             if (!isRelease) {
                 // 如果是组件化模式，需要单独运行时
                 manifest.srcFile 'src/main/debug/AndroidManifest.xml'
@@ -95,7 +100,15 @@ android {
                     // release 时 debug 目录下文件不需要合并到主工程
                     exclude '**/debug/**'
                 }
+
+
             }
+        }
+    }
+
+    packagingOptions{
+        if (isRelease) {
+            exclude 'res/layout/debug/layout/goods_debug_activity_main.xml'
         }
     }
 
