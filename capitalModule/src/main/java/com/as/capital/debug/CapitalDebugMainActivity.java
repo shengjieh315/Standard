@@ -1,17 +1,16 @@
-package com.as.goods.debug;
+package com.as.capital.debug;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.as.goods.R;
+import com.as.capital.R;
 
-
-public class GoodsDebugMainActivity extends AppCompatActivity {
+public class CapitalDebugMainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.goods_debug_activity_main);
+        setContentView(R.layout.capital_activity_main);
     }
 }

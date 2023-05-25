@@ -15,7 +15,7 @@ ext {
 
     appId = [
             goods  : "com.as.goods",
-            login: "com.as.login",
+            capital  : "com.as.capital"
     ]
 
     //版本号
