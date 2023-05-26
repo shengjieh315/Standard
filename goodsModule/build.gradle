@@ -87,7 +87,7 @@ android {
         main {
 
             res.srcDirs = [
-                    'src/main/res/layout/debug',
+                    'src/main/res-debug',
                     'src/main/res'
             ]
             if (!isRelease) {
@@ -100,15 +100,7 @@ android {
                     // release 时 debug 目录下文件不需要合并到主工程
                     exclude '**/debug/**'
                 }
-
-
             }
-        }
-    }
-
-    packagingOptions{
-        if (isRelease) {
-            exclude 'res/layout/debug/layout/goods_debug_activity_main.xml'
         }
     }
 
